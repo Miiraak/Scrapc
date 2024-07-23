@@ -37,7 +37,7 @@ CScrap est une application Windows Forms en C# permettant de crawler des sites w
 ## Fonctions
 | Nom | État |
 |:---:|:---:|
-| URL Crawler | [🟢] |
+| Site Crawler | [🟢] |
 | HTML Scraper  | [🟢] |
 | URL Scraper| [🟢] |
 | Multi-threading task | [🟠] |
