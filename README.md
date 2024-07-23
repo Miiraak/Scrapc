@@ -1,6 +1,6 @@
-# CScrap
+# Scrapc
 ## Introduction
-CScrap est une application Windows Forms en C# permettant de crawler des sites web, d'extraire des URLs et de scraper le contenu de ces pages. Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs collectées et le contenu extrait.
+Scrapc est une application Windows Forms en C# permettant de crawler des sites web, d'extraire des URLs et de scraper le contenu de ces pages. Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs collectées et le contenu extrait.
 
 ## Fonctionnalités
 
@@ -48,7 +48,7 @@ CScrap est une application Windows Forms en C# permettant de crawler des sites w
 Les contributions sont les bienvenues ! Veuillez ouvrir une issue ou soumettre une pull request pour toute amélioration ou correction de bugs.
 
 ## Licence 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](https://github.com/Miiraak/CScrap/blob/master/LICENSE.txt) pour plus de détails.
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](https://github.com/Miiraak/Scrapc/blob/master/LICENSE.txt) pour plus de détails.
 
 # Disclaimer
 
@@ -62,6 +62,6 @@ L'auteur de ce logiciel n'est pas responsable des dommages ou des conséquences 
 
 ---
 
-### Sinon merci d'utiliser CScrap ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
+### Sinon merci d'utiliser Scrapc ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
 
 ---
