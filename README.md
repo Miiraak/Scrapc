@@ -30,9 +30,9 @@ CScrap est une application Windows Forms en C# permettant de crawler des sites w
 - Lancez l'application.
 - Selectionnez le langage approprié.
 - Entrez une URL valide dans le champ texte.
-- Cliquez sur le bouton Crawl pour commencer le crawling.
-- Utilisez Show URLs Gathered pour afficher les URLs récupérées. (optionnel)
-- Cliquez sur Scrap pour extraire et sauvegarder le contenu des pages collectées.
+- Cliquez sur le bouton `Crawl` pour commencer le crawling.
+- Utilisez `URLs ?` pour afficher les URLs récupérées. (optionnel)
+- Cliquez sur `Scrap` pour extraire et sauvegarder le contenu des pages collectées.
 
 ## Fonctions
 | Nom | État |
@@ -62,6 +62,6 @@ L'auteur de ce logiciel n'est pas responsable des dommages ou des conséquences 
 
 ---
 
-### Merci d'utiliser CScrap ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
+### Sinon merci d'utiliser CScrap ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
 
 ---

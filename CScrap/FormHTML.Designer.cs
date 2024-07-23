@@ -66,9 +66,9 @@ namespace CScrap
             label1.AutoSize = true;
             label1.Location = new Point(12, 11);
             label1.Name = "label1";
-            label1.Size = new Size(63, 15);
+            label1.Size = new Size(34, 15);
             label1.TabIndex = 2;
-            label1.Text = "Page URL :";
+            label1.Text = "URL :";
             // 
             // textBoxURL
             // 
@@ -109,7 +109,7 @@ namespace CScrap
             ButtonShowUrlsGathered.Name = "ButtonShowUrlsGathered";
             ButtonShowUrlsGathered.Size = new Size(75, 23);
             ButtonShowUrlsGathered.TabIndex = 7;
-            ButtonShowUrlsGathered.Text = "urls ?";
+            ButtonShowUrlsGathered.Text = "URLs ?";
             ButtonShowUrlsGathered.UseVisualStyleBackColor = true;
             ButtonShowUrlsGathered.Click += ButtonShowUrlsGathered_Click;
             // 
