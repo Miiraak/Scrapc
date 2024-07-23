@@ -1,11 +1,12 @@
 # CScrap
 ## Introduction
 CScrap est une application Windows Forms en C# permettant de crawler des sites web, d'extraire des URLs et de scraper le contenu de ces pages. Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs collectées et le contenu extrait.
-Fonctionnalités
+
+## Fonctionnalités
 
 - Crawling de site web : Collecte les URLs à partir d'une page donnée.
 - Scraping de contenu : Extrait et sauvegarde le contenu des pages trouvées.
-- Gestion des URLs : Affiche et sauvegarde les URLs collectées.
+- Scraping d'URLs : Affiche et sauvegarde les URLs collectées.
 
 ## Prérequis
 - .NET Framework
@@ -22,7 +23,7 @@ Fonctionnalités
 #### Visual Studio
 
     Ouvrez le projet avec Visual Studio.
-    Ajoutez les dépendances nécessaires (HtmlAgilityPack).
+    Ajoutez les dépendances nécessaires (HtmlAgilityPack) via NuGet.
 
 ## Utilisation
 
@@ -37,7 +38,8 @@ Fonctionnalités
 | Nom | État |
 |:---:|:---:|
 | URL Crawler | [🟢] |
-| Scraper HTML | [🟢] |
+| HTML Scraper  | [🟢] |
+| URL Scraper| [🟢] |
 | Multi-threading task | [🟠] |
 | XML functions | [🛑] |
 | ... | [⚫] |
@@ -60,4 +62,6 @@ L'auteur de ce logiciel n'est pas responsable des dommages ou des conséquences 
 
 ---
 
-Merci d'utiliser CScrap ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
+### Merci d'utiliser CScrap ! N'hésitez pas à faire des suggestions ou à signaler des bugs.
+
+---
