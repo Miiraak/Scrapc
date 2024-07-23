@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CScrap
+namespace Scrapc
 {
     public partial class FormHTMLmessageBox : Form
     {

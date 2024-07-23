@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace CScrap
+namespace Scrapc
 {
     public partial class FormHTML : Form
     {

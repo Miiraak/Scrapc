@@ -1,4 +1,4 @@
-﻿namespace CScrap
+﻿namespace Scrapc
 {
     partial class FormHTMLmessageBox
     {

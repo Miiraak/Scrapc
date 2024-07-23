@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace CScrap
+namespace Scrapc
 {
     partial class FormHTML
     {
@@ -132,7 +132,7 @@ namespace CScrap
             MaximizeBox = false;
             Name = "FormHTML";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CScrap : HTML";
+            Text = "Scrapc : HTML";
             ResumeLayout(false);
             PerformLayout();
         }

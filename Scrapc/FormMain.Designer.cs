@@ -1,4 +1,4 @@
-﻿namespace CScrap
+﻿namespace Scrapc
 {
     partial class FormMain
     {
@@ -74,7 +74,7 @@
             MinimizeBox = false;
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CScrap";
+            Text = "Scrapc";
             ResumeLayout(false);
             PerformLayout();
         }

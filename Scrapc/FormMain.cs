@@ -1,4 +1,4 @@
-namespace CScrap
+namespace Scrapc
 {
     public partial class FormMain : Form
     {

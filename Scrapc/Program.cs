@@ -1,4 +1,4 @@
-namespace CScrap
+namespace Scrapc
 {
     internal static class Program
     {
