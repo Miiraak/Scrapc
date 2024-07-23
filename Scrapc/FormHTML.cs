@@ -22,7 +22,7 @@ namespace Scrapc
             visitedUrls = [];
 
             // Limitation des reqêtes smiultanées
-            semaphore = new SemaphoreSlim(10);
+            semaphore = new SemaphoreSlim(10);   
         }
 
         //--------------------------------------------------------------------------------------
