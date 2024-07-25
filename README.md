@@ -29,10 +29,14 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 
 - Lancez l'application.
 - Selectionnez le langage approprié.
+<img src="/Images/Menu.png" width="300" height="140">
 - Entrez une URL valide dans le champ texte.
+- Choississez le nombre d'url que vous souhaitez explorer.
 - Cliquez sur le bouton `Crawl` pour commencer le crawling.
+<img src="/Images/MenuHTML.png" width="300" height="200">
 - Utilisez `URLs ?` pour afficher les URLs récupérées. (optionnel)
-- Cliquez sur `Scrap` pour extraire et sauvegarder le contenu des pages collectées.
+<img src="/Images/ShowURLs.png" width="441" height="442">
+- Cliquez sur `Scrap` pour extraire et sauvegarder le contenu des pages collectées et les URLs. <br>
 
 ## Fonctions
 | Nom | État |
