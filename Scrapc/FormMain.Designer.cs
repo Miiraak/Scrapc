@@ -38,14 +38,14 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(65, 15);
+            label1.Size = new Size(60, 15);
             label1.TabIndex = 0;
-            label1.Text = "Language :";
+            label1.Text = "Fonction :";
             // 
             // comboBoxLangage
             // 
             comboBoxLangage.FormattingEnabled = true;
-            comboBoxLangage.Items.AddRange(new object[] { "HTML" });
+            comboBoxLangage.Items.AddRange(new object[] { "HTML", "Text", "Images", "URLs" });
             comboBoxLangage.Location = new Point(12, 27);
             comboBoxLangage.Name = "comboBoxLangage";
             comboBoxLangage.Size = new Size(224, 23);

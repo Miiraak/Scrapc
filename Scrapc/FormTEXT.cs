@@ -2,7 +2,7 @@
 
 namespace Scrapc
 {
-    public partial class FormHTML : Form
+    public partial class FormTEXT : Form
     {
         internal HttpClient httpClient;
         internal HashSet<string> visitedUrls;
@@ -11,7 +11,7 @@ namespace Scrapc
         // Liste contenant les urls récupérées
         public static List<string> AllUrls { get; set; } = [];
 
-        public FormHTML()
+        public FormTEXT()
         {
             InitializeComponent();
             ButtonScrap.Enabled = false;
@@ -22,13 +22,22 @@ namespace Scrapc
             visitedUrls = [];
 
             // Limitation des reqêtes smiultanées
-            semaphore = new SemaphoreSlim(10);
+            semaphore = new SemaphoreSlim(10);   
         }
+
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
+            // Ferme FormTEXT
             this.Close();
         }
+
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
 
         private async void ButtonCrawl_Click(object sender, EventArgs e)
         {
@@ -55,6 +64,8 @@ namespace Scrapc
                 Console.WriteLine("Please enter a valid URL.");
             }
         }
+
+        // Récupère les liens URL contenus dans la page entré dans le textBoxURL
         private async Task CrawlWebsite(string url)
         {
             // Check si l'url est déja vérifiée et si le nombre récupérer ne dépasse pas la demande de l'utilisateur.
@@ -86,6 +97,7 @@ namespace Scrapc
             }
         }
 
+        // Extrait les URL de la page HTML
         private List<string> ExtractUrls(string htmlContent, string baseUrl)
         {
             var urls = new List<string>();
@@ -145,12 +157,12 @@ namespace Scrapc
         {
             try
             {
-                if (folderBrowserDialogHTML.ShowDialog() == DialogResult.OK)
+                if (folderBrowserDialogTEXT.ShowDialog() == DialogResult.OK)
                 {
                     var urlsToScrape = new List<string>(AllUrls);
 
                     // Création du dossier pour stocker les fichiers
-                    DirectoryInfo dir = Directory.CreateDirectory(Path.Combine(folderBrowserDialogHTML.SelectedPath, $"{GetFileNameFromUrl(textBoxURL.Text)}{DateTime.Now:[yyyy-MM-dd_HH-mm-ss]}"));
+                    DirectoryInfo dir = Directory.CreateDirectory(Path.Combine(folderBrowserDialogTEXT.SelectedPath, $"{GetFileNameFromUrl(textBoxURL.Text)}{DateTime.Now:[yyyy-MM-dd_HH-mm-ss]}"));
 
                     // Création du fichier contenant toute les urls utilisée pour le scraping
                     string filePathCheck = Path.Combine(dir.FullName, "All_Urls_Gathered.txt");
@@ -172,21 +184,30 @@ namespace Scrapc
             }
         }
 
+        // Fonction pour scraper et sauvegarder le contenu de la page
         private async Task ScrapeAndSave(string url, DirectoryInfo dir)
         {
+            // Limiter le nombre de requêtes simultanées
             await semaphore.WaitAsync();
             try
             {
+                // Création du nom du fichier depuis l'url et le chemin du fichier
                 string fileName = GetFileNameFromUrl(url);
                 string filePath = Path.Combine(dir.FullName, $"{fileName}.txt");
 
+                // Récupération du contenu de la page
                 string html = await FetchUrlAsync(url);
                 HtmlAgilityPack.HtmlDocument doc = new();
                 doc.LoadHtml(html);
 
-                if (doc != null)
+                // Récupération du contenu de la balise body
+                var bodyNode = doc.DocumentNode.SelectSingleNode("//body");
+                if (bodyNode != null)
                 {
-                    File.WriteAllText(filePath, doc.Text.ToString());
+                    File.WriteAllText(filePath, bodyNode.InnerText);
+
+                    // Nettoyage du fichier crée (suppression lignes vide ou avec seulement des espaces)
+                    RemoveEmptyLines(filePath);
 
                     Console.WriteLine($"Fichier enregistré avec succès à {filePath}");
                 }
@@ -213,10 +234,12 @@ namespace Scrapc
             }
         }
 
+        // Fonction pour récupérer le contenu de la page
         private async Task<string> FetchUrlAsync(string url)
         {
             try
             {
+                // Récupération du contenu de la page, vérification de la réponse et retour du contenu
                 HttpResponseMessage response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
@@ -228,18 +251,23 @@ namespace Scrapc
             }
             finally
             {
+                // Attendre 1 seconde entre les requêtes
                 await Task.Delay(1000);
             }
         }
 
+        // Fonction pour créer le nom du fichier à partir de l'url
         private static string GetFileNameFromUrl(string url)
         {
+            // Limite la longueur du nom du fichier => evite les erreurs dues à des fichiers/chemins absolus trop longs.
             if (url.Length > 100)
             {
                 url = url.Remove(100, url.Length);
             }
+            // Vérification du protocole utilisé
             if (url.StartsWith("http://"))
             {
+                // Remplacement des caractères spéciaux par des caractères autorisés
                 return url.Remove(0, 10)
                           .Replace("/", "-")
                           .Replace("|", "_")
@@ -254,12 +282,13 @@ namespace Scrapc
             }
             else if (url.StartsWith("https://"))
             {
+                // Similaire à la condition précédente
                 return url.Remove(0, 11)
                           .Replace("/", "-")
                           .Replace("|", "_")
                           .Replace(@"\", "_")
                           .Replace('"', '_')
-                          .Replace(":", "_")
+                          .Replace(":", "_")    
                           .Replace("*", "_")
                           .Replace("?", "_")
                           .Replace("<", "_")
@@ -267,6 +296,7 @@ namespace Scrapc
             }
             else
             {
+                // Si le protocole est différent, on remplace les caractères spéciaux
                 return url.Replace(".", "_")
                           .Replace("/", "-")
                           .Replace("|", "_")
@@ -280,8 +310,10 @@ namespace Scrapc
             }
         }
 
+        // Fonction pour supprimer les lignes vides d'un fichier
         private static void RemoveEmptyLines(string filePath)
         {
+            // Récupération des lignes du fichier, suppression des lignes vides et réécriture du fichier
             var lines = File.ReadAllLines(filePath);
             var nonEmptyLines = lines.Where(line => !string.IsNullOrWhiteSpace(line));
 
@@ -292,10 +324,11 @@ namespace Scrapc
         //--------------------------------------------------------------------------------------
         //--------------------------------------------------------------------------------------
 
+        // Fonction pour afficher les urls récupérées, appel de la FormTEXTMessageBox
         private void ButtonShowUrlsGathered_Click(object sender, EventArgs e)
         {
-            FormHTMLMessageBox formHTMLMessageBox = new();
-            formHTMLMessageBox.Show();
+            FormTextMessageBox formTEXTmessageBox = new();
+            formTEXTmessageBox.Show();
         }
     }
 }

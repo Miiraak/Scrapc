@@ -1,8 +1,8 @@
 ﻿namespace Scrapc
 {
-    public partial class FormHTMLMessageBox : Form
+    public partial class FormTextMessageBox : Form
     {
-        public FormHTMLMessageBox()
+        public FormTextMessageBox()
         {
             InitializeComponent();
             ShowURLs();
@@ -10,7 +10,7 @@
 
         private void ShowURLs()
         {
-            richTextBoxListURL.Text = string.Join("\n", FormHTML.AllUrls);
+            richTextBoxListURL.Text = string.Join("\n", FormTEXT.AllUrls);
         }
     }
 }

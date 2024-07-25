@@ -1,6 +1,8 @@
-﻿namespace Scrapc
+﻿using System.Windows.Forms;
+
+namespace Scrapc
 {
-    partial class FormHTML
+    partial class FormTEXT
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +35,7 @@
             label1 = new Label();
             textBoxURL = new TextBox();
             ButtonCrawl = new Button();
-            folderBrowserDialogHTML = new FolderBrowserDialog();
+            folderBrowserDialogTEXT = new FolderBrowserDialog();
             label2 = new Label();
             textBoxNumberCrawl = new TextBox();
             ButtonShowUrlsGathered = new Button();
@@ -111,7 +113,7 @@
             ButtonShowUrlsGathered.UseVisualStyleBackColor = true;
             ButtonShowUrlsGathered.Click += ButtonShowUrlsGathered_Click;
             // 
-            // FormHTML
+            // FormTEXT
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -128,9 +130,9 @@
             Controls.Add(ButtonBack);
             Cursor = Cursors.Cross;
             MaximizeBox = false;
-            Name = "FormHTML";
+            Name = "FormTEXT";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Scrapc : HTML";
+            Text = "Scrapc : Text";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,7 +144,7 @@
         private Label label1;
         private TextBox textBoxURL;
         private Button ButtonCrawl;
-        private FolderBrowserDialog folderBrowserDialogHTML;
+        private FolderBrowserDialog folderBrowserDialogTEXT;
         private Label label2;
         private TextBox textBoxNumberCrawl;
         private Button ButtonShowUrlsGathered;
