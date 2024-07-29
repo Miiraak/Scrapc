@@ -47,7 +47,7 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 | HTML Scraper  | [🟢] |
 | URL Scraper| [🟢] |
 | Multi-threading task | [🟢] |
-| Images functions | [🛑] |
+| Images functions | [🟠] |
 | ... | [⚫] |
 
 ## Contribution
