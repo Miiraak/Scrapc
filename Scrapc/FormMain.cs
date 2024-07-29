@@ -13,23 +13,27 @@ namespace Scrapc
             {
                 case "HTML":
                     // Instencie FormHTML et l'affiche.
-                    FormHTML formHTML = new FormHTML();
+                    FormHTML formHTML = new();
                     formHTML.Show();
                     FormHTML.AllUrls.Clear();
                     break;
                 case "Text":
+                    // Pour FormText
                     FormTEXT formText = new();
                     formText.Show();
                     FormTEXT.AllUrls.Clear();
                     break;
+                case "Images":
+                    // Pour FormImage
+                    FormImage formImage = new();
+                    formImage.Show();
+                    FormImage.ImageUrls.Clear();
+                    break;
                 case "URLs":
                     // Add for URLs 
                     break;
-                case "Images":
-                    // Add for Images
-                    break;
                 default:
-                    MessageBox.Show("Veuillez choisir un langage.");
+                    MessageBox.Show("Veuillez choisir une fonction.");
                     break;
             }
         }

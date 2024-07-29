@@ -61,7 +61,7 @@ namespace Scrapc
             }
             else
             {
-                Console.WriteLine("Please enter a valid URL.");
+                MessageBox.Show("Please enter a valid URL.");
             }
         }
 
@@ -88,7 +88,7 @@ namespace Scrapc
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error crawling {url}: {ex.Message}");
+                    Console.WriteLine($"Error crawling {url}: {ex}");
                 }
             }
             else
@@ -118,15 +118,19 @@ namespace Scrapc
                         hrefValue = new Uri(new Uri(baseUrl), hrefValue).ToString();
                     }
 
-                    // Vérifier si l'URL est bien formée et est HTTP/HTTPS et si elle n'a pas déjà été visitée
+                    // Vérifier si l'URL est bien formée et est HTTP/HTTPS
                     if (Uri.IsWellFormedUriString(hrefValue, UriKind.Absolute))
                     {
+                        // Création d'un objet Uri pour vérifier le domaine
                         var uri = new Uri(hrefValue);
+
+                        // Vérifier si l'URL est bien formée et est HTTP/HTTPS et si elle n'a pas déjà été visitée
                         if ((uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps) && !visitedUrls.Contains(hrefValue))
                         {
                             // Vérifier si l'URL appartient au même domaine que l'URL de base
                             if (uri.Host == new Uri(baseUrl).Host)
                             {
+                                // Ajouter l'URL à la liste des URLs de la page
                                 urls.Add(hrefValue);
                             }
                         }
@@ -180,7 +184,7 @@ namespace Scrapc
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Une autre erreur s'est produite : {ex.Message}");
+                Console.WriteLine($"Une autre erreur s'est produite : {ex}");
             }
         }
 
@@ -209,24 +213,24 @@ namespace Scrapc
                     // Nettoyage du fichier crée (suppression lignes vide ou avec seulement des espaces)
                     RemoveEmptyLines(filePath);
 
-                    Console.WriteLine($"Fichier enregistré avec succès à {filePath}");
+                    MessageBox.Show($"Fichier enregistré avec succès à {filePath}");
                 }
                 else
                 {
-                    Console.WriteLine("Aucun contenu trouvé");
+                    MessageBox.Show("Aucun contenu trouvé");
                 }
             }
             catch (System.Net.Sockets.SocketException ex)
             {
-                Console.WriteLine($"Error scraping {url}: Host not found : {ex.Message}");
+                Console.WriteLine($"Error scraping {url}: Host not found : {ex}");
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error scraping {url}: {ex.Message}");
+                Console.WriteLine($"Error scraping {url}: {ex}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error scraping {url}: {ex.Message}");
+                Console.WriteLine($"Error scraping {url}: {ex}");
             }
             finally
             {
@@ -246,7 +250,7 @@ namespace Scrapc
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching {url}: {ex.Message}");
+                Console.WriteLine($"Error fetching {url}: {ex}");
                 throw;
             }
             finally
@@ -313,10 +317,11 @@ namespace Scrapc
         // Fonction pour supprimer les lignes vides d'un fichier
         private static void RemoveEmptyLines(string filePath)
         {
-            // Récupération des lignes du fichier, suppression des lignes vides et réécriture du fichier
+            // Récupération des lignes du fichier, suppression des lignes vides
             var lines = File.ReadAllLines(filePath);
             var nonEmptyLines = lines.Where(line => !string.IsNullOrWhiteSpace(line));
 
+            // Réécriture du fichier sans les lignes vides
             File.WriteAllLines(filePath, nonEmptyLines);
         }
 

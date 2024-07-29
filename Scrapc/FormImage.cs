@@ -2,30 +2,37 @@
 
 namespace Scrapc
 {
-    public partial class FormHTML : Form
+    public partial class FormImage : Form
     {
         internal HttpClient httpClient;
-        internal HashSet<string> visitedUrls;
         internal SemaphoreSlim semaphore;
 
-        public static List<string> AllUrls { get; set; } = [];
+        // Liste contenant les urls des images récupérées
+        public static List<string> ImageUrls { get; set; } = [];
 
-        public FormHTML()
+        public FormImage()
         {
             InitializeComponent();
             ButtonScrap.Enabled = false;
             ButtonShowUrlsGathered.Enabled = false;
 
             httpClient = new();
-            visitedUrls = [];
 
-            semaphore = new SemaphoreSlim(10);
+            semaphore = new SemaphoreSlim(5);
         }
+
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------
 
         private async void ButtonCrawl_Click(object sender, EventArgs e)
         {
@@ -33,12 +40,11 @@ namespace Scrapc
             {
                 ButtonCrawl.Enabled = false;
 
-                visitedUrls.Clear();
-                AllUrls.Clear();
+                ImageUrls.Clear();
 
                 await CrawlWebsite(textBoxURL.Text);
 
-                MessageBox.Show($"Crawling completed!\nCount : {AllUrls.Count}");
+                MessageBox.Show($"Crawling completed!\nCount : {ImageUrls.Count}");
 
                 ButtonScrap.Enabled = true;
                 ButtonCrawl.Enabled = true;
@@ -51,60 +57,48 @@ namespace Scrapc
         }
         private async Task CrawlWebsite(string url)
         {
-            if (!visitedUrls.Contains(url) && AllUrls.Count < Convert.ToInt32(textBoxNumberCrawl.Text))
+            try
             {
-                visitedUrls.Add(url);
-                AllUrls.Add(url);
-                try
-                {
-                    string htmlContent = await httpClient.GetStringAsync(url);
-                    List<string> urlsOnPage = ExtractUrls(htmlContent, url);
-
-                    var crawlTasks = urlsOnPage.Select(foundUrl => CrawlWebsite(foundUrl));
-                    await Task.WhenAll(crawlTasks);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error crawling {url}: {ex}");
-                }
+                string htmlContent = await httpClient.GetStringAsync(url);
+                ExtractURLImage(htmlContent, url);
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Already visited or too many URLs");
+                Console.WriteLine($"Error crawling {url}: {ex}");
             }
         }
 
-        private List<string> ExtractUrls(string htmlContent, string baseUrl)
+        private static void ExtractURLImage(string htmlContent, string baseUrl)
         {
-            var urls = new List<string>();
             var htmlDocument = new HtmlAgilityPack.HtmlDocument();
             htmlDocument.LoadHtml(htmlContent);
 
-            var linkNodes = htmlDocument.DocumentNode.SelectNodes("//a[@href]");
-            if (linkNodes != null)
+            // Selection des nodes contenant les sources images
+            var imgNodes = htmlDocument.DocumentNode.SelectNodes("//img[@src]");
+            if (imgNodes != null)
             {
-                foreach (var linkNode in linkNodes)
+                foreach (var imgNode in imgNodes)
                 {
-                    var hrefValue = linkNode.GetAttributeValue("href", string.Empty);
-                    if (Uri.IsWellFormedUriString(hrefValue, UriKind.Relative))
+                    // Récupère la valeur de l'attribut src
+                    var src = imgNode.GetAttributeValue("src", string.Empty);
+
+                    // Formate l'url si elle est relative
+                    if (Uri.IsWellFormedUriString(src, UriKind.Relative))
                     {
-                        hrefValue = new Uri(new Uri(baseUrl), hrefValue).ToString();
+                        src = new Uri(new Uri(baseUrl), src).ToString();
                     }
 
-                    if (Uri.IsWellFormedUriString(hrefValue, UriKind.Absolute))
+                    if (Uri.IsWellFormedUriString(src, UriKind.Absolute))
                     {
-                        var uri = new Uri(hrefValue);
-                        if ((uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps) && !visitedUrls.Contains(hrefValue))
+                        // Vérifie si l'url est déjà dans la liste
+                        if (!ImageUrls.Contains(src))
                         {
-                            if (uri.Host == new Uri(baseUrl).Host)
-                            {
-                                urls.Add(hrefValue);
-                            }
+                            // Ajoute l'url à la liste
+                            ImageUrls.Add(src);
                         }
                     }
                 }
             }
-            return urls;
         }
 
         //--------------------------------------------------------------------------------------
@@ -130,17 +124,17 @@ namespace Scrapc
             {
                 if (folderBrowserDialogHTML.ShowDialog() == DialogResult.OK)
                 {
-                    var urlsToScrape = new List<string>(AllUrls);
+                    var urlsToScrape = new List<string>(ImageUrls);
 
                     DirectoryInfo dir = Directory.CreateDirectory(Path.Combine(folderBrowserDialogHTML.SelectedPath, $"{GetFileNameFromUrl(textBoxURL.Text)}{DateTime.Now:[yyyy-MM-dd_HH-mm-ss]}"));
 
                     string filePathCheck = Path.Combine(dir.FullName, "All_Urls_Gathered.txt");
-                    string StringAllUrls = string.Join("\n", AllUrls);
+                    string StringAllUrls = string.Join("\n", ImageUrls);
                     File.WriteAllText(filePathCheck, StringAllUrls);
 
-                    var scrapeTasks = urlsToScrape.Select(url => ScrapeAndSave(url, dir));
-
-                    await Task.WhenAll(scrapeTasks);
+                    // Création d'une liste de tâches pour télécharger les images, puis attendre qu'elles soient toutes terminées
+                    var tasks = urlsToScrape.Select(url => Task.Run(() => ScrapeAndSave(url, dir)));
+                    await Task.WhenAll(tasks);
 
                     MessageBox.Show($"Scraping completed!\nFiles saved at {dir.FullName}");
                 }
@@ -157,57 +151,19 @@ namespace Scrapc
             try
             {
                 string fileName = GetFileNameFromUrl(url);
-                string filePath = Path.Combine(dir.FullName, $"{fileName}.html");
+                string filePath = Path.Combine(dir.FullName, fileName);
 
-                string html = await FetchUrlAsync(url);
-                HtmlAgilityPack.HtmlDocument doc = new();
-                doc.LoadHtml(html);
+                var bytes = await httpClient.GetByteArrayAsync(url);
+                await File.WriteAllBytesAsync(filePath, bytes);
 
-                if (doc != null)
-                {
-                    File.WriteAllText(filePath, doc.Text.ToString());
-
-                    MessageBox.Show($"Fichier enregistré avec succès à {filePath}");
-                }
-                else
-                {
-                    MessageBox.Show("Aucun contenu trouvé");
-                }
-            }
-            catch (System.Net.Sockets.SocketException ex)
-            {
-                Console.WriteLine($"Error scraping {url}: Host not found : {ex}");
-            }
-            catch (HttpRequestException ex)
-            {
-                Console.WriteLine($"Error scraping {url}: {ex}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error scraping {url}: {ex}");
+                Console.WriteLine($"Erreur lors du téléchargement de l'image {url}: {ex}");
             }
             finally
             {
                 semaphore.Release();
-            }
-        }
-
-        private async Task<string> FetchUrlAsync(string url)
-        {
-            try
-            {
-                HttpResponseMessage response = await httpClient.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error fetching {url}: {ex}");
-                throw;
-            }
-            finally
-            {
-                await Task.Delay(1000);
             }
         }
 
@@ -217,10 +173,6 @@ namespace Scrapc
 
         private static string GetFileNameFromUrl(string url)
         {
-            if (url.Length > 100)
-            {
-                url = url.Remove(100, url.Length);
-            }
             if (url.StartsWith("http://"))
             {
                 return url.Remove(0, 10)
@@ -269,8 +221,8 @@ namespace Scrapc
 
         private void ButtonShowUrlsGathered_Click(object sender, EventArgs e)
         {
-            FormHTMLMessageBox formHTMLMessageBox = new();
-            formHTMLMessageBox.Show();
+            FormImageMessageBox formImageMessageBox = new();
+            formImageMessageBox.Show();
         }
-    }                                        
+    }
 }
