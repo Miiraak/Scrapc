@@ -6,6 +6,7 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 
 - Crawling de site web : Collecte les URLs à partir d'une page donnée.
 - Scraping de contenu : Extrait et sauvegarde le contenu des pages trouvées.
+- Scraping HTML : Extrait et sauvegarde le code HTML des pages trouvées.
 - Scraping d'URLs : Affiche et sauvegarde les URLs collectées.
 
 ## Prérequis
@@ -28,24 +29,25 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 ## Utilisation
 
 - Lancez l'application.
-- Selectionnez le langage approprié.
+- Selectionnez la fonction approprié.
 <img src="/Images/Menu.png" width="300" height="140">
 - Entrez une URL valide dans le champ texte.
-- Choississez le nombre d'url que vous souhaitez explorer.
+- Choississez le nombre d'url que vous souhaitez explorer au maximum.
 - Cliquez sur le bouton `Crawl` pour commencer le crawling.
 <img src="/Images/MenuHTML.png" width="300" height="200">
 - Utilisez `URLs ?` pour afficher les URLs récupérées. (optionnel)
 <img src="/Images/ShowURLs.png" width="441" height="442">
-- Cliquez sur `Scrap` pour extraire et sauvegarder le contenu des pages collectées et les URLs. <br>
+- Cliquez sur `Scrap` pour extraire et sauvegarder le contenu des pages collectées selon la fonction choisie et les URLs utilisés. <br>
 
 ## Fonctions
 | Nom | État |
 |:---:|:---:|
 | Site Crawler | [🟢] |
+| Text Scraper  | [🟢] |
 | HTML Scraper  | [🟢] |
 | URL Scraper| [🟢] |
-| Multi-threading task | [🟠] |
-| XML functions | [🛑] |
+| Multi-threading task | [🟢] |
+| Images functions | [🟠] |
 | ... | [⚫] |
 
 ## Contribution
