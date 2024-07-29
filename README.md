@@ -7,6 +7,7 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 - Crawling de site web : Collecte les URLs à partir d'une page donnée.
 - Scraping de contenu : Extrait et sauvegarde le contenu des pages trouvées.
 - Scraping HTML : Extrait et sauvegarde le code HTML des pages trouvées.
+- Scraping Image : Extrait et sauvegarde les images trouvées dans les pages.
 - Scraping d'URLs : Affiche et sauvegarde les URLs collectées.
 
 ## Prérequis
@@ -60,7 +61,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](https://github.com/Mii
 
 Attention : L'utilisation de cette application doit se faire de manière responsable et légale.
 
-- Respect des Conditions d'Utilisation : Assurez-vous de respecter les conditions d'utilisation des sites web que vous crawlez. De nombreux sites web interdisent explicitement le scraping ou limitent la fréquence des requêtes.
+- Respect des Conditions d'Utilisation : Assurez-vous de respecter les conditions d'utilisation des sites web que vous crawlez. De nombreux sites web interdisent explicitement le scraping ou limitent la fréquence des requêtes. (Pardon Wikipedia 🙏)
 - DDoS (Distributed Denial of Service) : L'utilisation incorrecte de cette application peut entraîner un grand nombre de requêtes simultanées, potentiellement provoquant un DDoS involontaire. Limitez le nombre de requêtes simultanées et la fréquence des requêtes pour éviter cela.
 - Contenu Interdit : Ne crawlez pas des sites web contenant des contenus illégaux ou des informations sensibles.
 
