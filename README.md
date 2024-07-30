@@ -1,10 +1,11 @@
 # Scrapc
 ## Introduction
-Scrapc est une application Windows Forms en C# permettant de crawler des sites web, d'extraire des URLs et de scraper le contenu de ces pages. Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs collectées et le contenu extrait.
+Scrapc est une application Windows Forms en C# permettant de crawler des sites web et d'en extraire les différents contenus pour les sauvegarder localement. <br> Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs à scraper.
 
 ## Fonctionnalités
 
-- Crawling de site web : Collecte les URLs à partir d'une page donnée.
+- Crawling de site web : Collecte les URLs récursivement à partir d'une page donnée.
+- Limitation des URL : Choissez le nombre maximal d'url à collecter pour le scraping
 - Scraping de contenu : Extrait et sauvegarde le contenu des pages trouvées.
 - Scraping HTML : Extrait et sauvegarde le code HTML des pages trouvées.
 - Scraping Image : Extrait et sauvegarde les images trouvées dans les pages.
@@ -44,9 +45,10 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 | Nom | État |
 |:---:|:---:|
 | Site Crawler | [🟢] |
-| Text Scraper  | [🟢] |
-| HTML Scraper  | [🟢] |
-| URL Scraper| [🟢] |
+| Limiter URL | [🟢] |
+| Text Scraper | [🟢] |
+| HTML Scraper | [🟢] |
+| URL Scraper | [🟢] |
 | Multi-threading task | [🟢] |
 | Images functions | [🟠] |
 | ... | [⚫] |
@@ -61,7 +63,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](https://github.com/Mii
 
 Attention : L'utilisation de cette application doit se faire de manière responsable et légale.
 
-- Respect des Conditions d'Utilisation : Assurez-vous de respecter les conditions d'utilisation des sites web que vous crawlez. De nombreux sites web interdisent explicitement le scraping ou limitent la fréquence des requêtes. (Pardon Wikipedia 🙏)
+- Respect des Conditions d'Utilisation : Assurez-vous de respecter les conditions d'utilisation des sites web que vous crawlez. De nombreux sites web limitent la fréquence des requêtes, interdisent explicitement le scraping ou l'accès à certaines ressources. (Pardon Wikipedia c'était pas voulu 😅🙏)
 - DDoS (Distributed Denial of Service) : L'utilisation incorrecte de cette application peut entraîner un grand nombre de requêtes simultanées, potentiellement provoquant un DDoS involontaire. Limitez le nombre de requêtes simultanées et la fréquence des requêtes pour éviter cela.
 - Contenu Interdit : Ne crawlez pas des sites web contenant des contenus illégaux ou des informations sensibles.
 
