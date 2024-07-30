@@ -17,7 +17,7 @@ namespace Scrapc
                     formHTML.Show();
                     FormHTML.AllUrls.Clear();
                     break;
-                case "Text":
+                case "Text":       
                     // Pour FormText
                     FormTEXT formText = new();
                     formText.Show();
@@ -30,11 +30,11 @@ namespace Scrapc
                     FormImage.ImageUrls.Clear();
                     break;
                 case "URLs":
+                    // Pour FormURL
                     FormURL formURL = new();
                     formURL.Show();
                     FormURL.AllUrls.Clear();
-                    // Add for URLs 
-                    break;
+                    break;                                    
                 default:
                     MessageBox.Show("Veuillez choisir une fonction.");
                     break;

@@ -94,7 +94,7 @@ namespace Scrapc
         }
 
         // Extrait les URL de la page HTML
-        private List<string> ExtractUrls(string htmlContent, string baseUrl)
+        private static List<string> ExtractUrls(string htmlContent, string baseUrl)
         {
             var urls = new List<string>();
             var htmlDocument = new HtmlAgilityPack.HtmlDocument();
@@ -230,17 +230,6 @@ namespace Scrapc
                           .Replace("<", "_")
                           .Replace(">", "_");
             }
-        }
-
-        // Fonction pour supprimer les lignes vides d'un fichier
-        private static void RemoveEmptyLines(string filePath)
-        {
-            // Récupération des lignes du fichier, suppression des lignes vides
-            var lines = File.ReadAllLines(filePath);
-            var nonEmptyLines = lines.Where(line => !string.IsNullOrWhiteSpace(line));
-
-            // Réécriture du fichier sans les lignes vides
-            File.WriteAllLines(filePath, nonEmptyLines);
         }
 
         //--------------------------------------------------------------------------------------
