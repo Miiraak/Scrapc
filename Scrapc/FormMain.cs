@@ -30,6 +30,9 @@ namespace Scrapc
                     FormImage.ImageUrls.Clear();
                     break;
                 case "URLs":
+                    FormURL formURL = new();
+                    formURL.Show();
+                    FormURL.AllUrls.Clear();
                     // Add for URLs 
                     break;
                 default:
