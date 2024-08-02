@@ -12,7 +12,7 @@ namespace Scrapc
             switch (comboBoxLangage.Text)
             {
                 case "HTML":
-                    // Instencie FormHTML et l'affiche.
+                    // Instanciation de FormHTML
                     FormHTML formHTML = new();
                     formHTML.Show();
                     FormHTML.AllUrls.Clear();
@@ -27,7 +27,7 @@ namespace Scrapc
                     // Pour FormImage
                     FormImage formImage = new();
                     formImage.Show();
-                    FormImage.ImageUrls.Clear();
+                    FormImage.AllUrls.Clear();
                     break;
                 case "URLs":
                     // Pour FormURL

@@ -10,6 +10,7 @@
 
         private void ShowURLs()
         {
+            // Display all the URLs gathered into the richTextBoxListURL
             richTextBoxListURL.Text = string.Join("\n", FormHTML.AllUrls);
         }
     }

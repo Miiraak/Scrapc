@@ -10,7 +10,7 @@
 
         private void ShowURLs()
         {
-            richTextBoxListURL.Text = string.Join("\n", FormImage.ImageUrls);
+            richTextBoxListURL.Text = string.Join("\n", FormImage.AllUrls);
         }
     }
 }

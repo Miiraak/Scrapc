@@ -33,7 +33,7 @@
             label1 = new Label();
             textBoxURL = new TextBox();
             ButtonCrawl = new Button();
-            folderBrowserDialogHTML = new FolderBrowserDialog();
+            folderBrowserDialogIMAGE = new FolderBrowserDialog();
             label2 = new Label();
             textBoxNumberCrawl = new TextBox();
             ButtonShowUrlsGathered = new Button();
@@ -142,7 +142,7 @@
         private Label label1;
         private TextBox textBoxURL;
         private Button ButtonCrawl;
-        private FolderBrowserDialog folderBrowserDialogHTML;
+        private FolderBrowserDialog folderBrowserDialogIMAGE;
         private Label label2;
         private TextBox textBoxNumberCrawl;
         private Button ButtonShowUrlsGathered;
