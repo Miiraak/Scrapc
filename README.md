@@ -35,7 +35,7 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 <img src="/Images/Menu.png" width="300" height="140">
 
 - Entrez une URL valide dans le champ texte. <br>
-_Vous pouvez utiliser ce site : [Book to Scrape](https://books.toscrape.com/) (Merci à vous 🫀)_
+_Vous pouvez utiliser ce site : [Book to Scrape](https://books.toscrape.com/) (Merci à eux 🫀)_
 - Choississez le nombre d'url que vous souhaitez explorer au maximum.
 - Cliquez sur le bouton `Crawl` pour commencer le crawling.
 <img src="/Images/MenuHTML.png" width="300" height="200">
