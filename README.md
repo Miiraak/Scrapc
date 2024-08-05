@@ -21,7 +21,7 @@ Scrapc est une application Windows Forms en C# permettant de crawler des sites w
 
 #### sh
 
-    git clone <URL_DU_DEPOT>
+    git clone https://github.com/Miiraak/Scrapc.git
 
 #### Visual Studio
 
