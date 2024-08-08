@@ -55,6 +55,7 @@ _Vous pouvez utiliser ce site : [Book to Scrape](https://books.toscrape.com/) (M
 | URL Scraper | [🟢] |
 | Multi-threading task | [🟢] |
 | Images functions | [🟠] |
+| Proxy implementation | [🔴] |
 | ... | [⚫] |
 
 ## Contribution
