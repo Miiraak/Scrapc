@@ -1,6 +1,6 @@
 ﻿namespace Scrapc
 {
-    partial class FormTextMessageBox
+    partial class MessageBox
     {
         /// <summary>
         /// Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace Scrapc
 {
-    partial class FormMain
+    partial class Menu
     {
         /// <summary>
         ///  Required designer variable.
@@ -45,7 +45,7 @@
             // comboBoxLangage
             // 
             comboBoxLangage.FormattingEnabled = true;
-            comboBoxLangage.Items.AddRange(new object[] { "HTML", "Text", "Images", "URLs" });
+            comboBoxLangage.Items.AddRange(new object[] { "Text", "HTML", "URLs", "Images" });
             comboBoxLangage.Location = new Point(12, 27);
             comboBoxLangage.Name = "comboBoxLangage";
             comboBoxLangage.Size = new Size(224, 23);

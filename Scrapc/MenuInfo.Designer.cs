@@ -1,8 +1,6 @@
-﻿using System.Windows.Forms;
-
-namespace Scrapc
+﻿namespace Scrapc
 {
-    partial class FormURL
+    partial class MenuInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +33,7 @@ namespace Scrapc
             label1 = new Label();
             textBoxURL = new TextBox();
             ButtonCrawl = new Button();
-            folderBrowserDialogURL = new FolderBrowserDialog();
+            folderBrowserDialogHTML = new FolderBrowserDialog();
             label2 = new Label();
             textBoxNumberCrawl = new TextBox();
             ButtonShowUrlsGathered = new Button();
@@ -113,7 +111,7 @@ namespace Scrapc
             ButtonShowUrlsGathered.UseVisualStyleBackColor = true;
             ButtonShowUrlsGathered.Click += ButtonShowUrlsGathered_Click;
             // 
-            // FormURL
+            // FormHTML
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -130,9 +128,9 @@ namespace Scrapc
             Controls.Add(ButtonBack);
             Cursor = Cursors.Cross;
             MaximizeBox = false;
-            Name = "FormURL";
+            Name = "FormHTML";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Scrapc : URL";
+            Text = "Scrapc : HTML";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -144,7 +142,7 @@ namespace Scrapc
         private Label label1;
         private TextBox textBoxURL;
         private Button ButtonCrawl;
-        private FolderBrowserDialog folderBrowserDialogURL;
+        private FolderBrowserDialog folderBrowserDialogHTML;
         private Label label2;
         private TextBox textBoxNumberCrawl;
         private Button ButtonShowUrlsGathered;
