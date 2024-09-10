@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            richTextBoxListURL = new RichTextBox();
+            checkedListBoxURL = new CheckedListBox();
+            buttonOK = new Button();
+            button1 = new Button();
+            buttonUnselect = new Button();
             SuspendLayout();
             // 
             // label1
@@ -41,25 +44,58 @@
             label1.TabIndex = 0;
             label1.Text = "List of gathered URLs :";
             // 
-            // richTextBoxListURL
+            // checkedListBoxURL
             // 
-            richTextBoxListURL.Location = new Point(12, 27);
-            richTextBoxListURL.Name = "richTextBoxListURL";
-            richTextBoxListURL.ReadOnly = true;
-            richTextBoxListURL.Size = new Size(401, 364);
-            richTextBoxListURL.TabIndex = 1;
-            richTextBoxListURL.Text = "";
+            checkedListBoxURL.CheckOnClick = true;
+            checkedListBoxURL.FormattingEnabled = true;
+            checkedListBoxURL.Location = new Point(12, 27);
+            checkedListBoxURL.Name = "checkedListBoxURL";
+            checkedListBoxURL.Size = new Size(401, 364);
+            checkedListBoxURL.TabIndex = 1;
             // 
-            // FormMessageBox
+            // buttonOK
+            // 
+            buttonOK.Location = new Point(338, 397);
+            buttonOK.Name = "buttonOK";
+            buttonOK.Size = new Size(75, 23);
+            buttonOK.TabIndex = 2;
+            buttonOK.Text = "OK";
+            buttonOK.UseVisualStyleBackColor = true;
+            buttonOK.Click += buttonOK_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(12, 397);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 3;
+            button1.Text = "Select all";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += buttonSelect_Click;
+            // 
+            // buttonUnselect
+            // 
+            buttonUnselect.Location = new Point(93, 397);
+            buttonUnselect.Name = "buttonUnselect";
+            buttonUnselect.Size = new Size(75, 23);
+            buttonUnselect.TabIndex = 4;
+            buttonUnselect.Text = "Unselect all";
+            buttonUnselect.UseVisualStyleBackColor = true;
+            buttonUnselect.Click += buttonUnselect_Click;
+            // 
+            // MessageBox
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(425, 403);
-            Controls.Add(richTextBoxListURL);
+            ClientSize = new Size(425, 430);
+            Controls.Add(buttonUnselect);
+            Controls.Add(button1);
+            Controls.Add(buttonOK);
+            Controls.Add(checkedListBoxURL);
             Controls.Add(label1);
             Cursor = Cursors.Cross;
-            Name = "FormMessageBox";
+            Name = "MessageBox";
             Text = "Scrapy : URLs";
             ResumeLayout(false);
             PerformLayout();
@@ -68,6 +104,9 @@
         #endregion
 
         private Label label1;
-        private RichTextBox richTextBoxListURL;
+        private CheckedListBox checkedListBoxURL;
+        private Button buttonOK;
+        private Button button1;
+        private Button buttonUnselect;
     }
 }
