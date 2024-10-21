@@ -1,6 +1,6 @@
 # Scrapc
 ## Description
-Scrapc est une application Windows Forms en C# permettant de crawler des sites web et d'en extraire les différents contenus pour les sauvegarder localement. <br> Elle dispose d'une interface utilisateur pour gérer et visualiser les URLs à scraper.
+A Windows Form app that let you recursivly crawl and crape web site to extract differents content.  
 
 ---
 
